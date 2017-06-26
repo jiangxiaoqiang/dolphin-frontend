@@ -1,16 +1,42 @@
 var gulp = require('gulp');
-var browserify = require('browserify');
-var babelify = require('babelify');
-var source = require('vinyl-source-stream');
+var webpack = require('gulp-webpack');
+var webpackConfig = require('./webpack/webpack.config.js');
+var imagemin = require('gulp-imagemin');
+var notify = require('gulp-notify');
 
-gulp.task('script:build', function() {
-    browserify('src/index.js')
-        .transform(babelify, {
-            presets: ['es2015', 'react']
-        })
-        .bundle()
-        .pipe(source('bundle.js'))
-        .pipe(gulp.dest('./'));
+gulp.task("webpack1", function() {
+    var myConfig = Object.create(webpackConfig);
+    return gulp
+        .src('/src/App.js')
+        .pipe(webpack(myConfig))
+        .pipe(gulp.dest('./build'));
 });
 
-gulp.task('default', ['script:build']);
+/**
+ * 压缩图片
+ */
+gulp.task('images', function() {
+    return gulp.src('src/images/**')
+        .pipe(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true }))
+        .pipe(gulp.dest('dist/assets/img'))
+        .pipe(notify({ message: 'Images task complete' }));
+});
+
+gulp.task('clean', function(cb) {
+    del(['dist/assets/css', 'dist/assets/js', 'dist/assets/img'], cb)
+});
+
+gulp.task("default",function () {
+    gulp.watch('./js/App.js', ['clean'],function () {
+        gulp.start('images');
+    });
+});
+
+gulp.task('watch', function() {
+    // Watch .scss files
+    //gulp.watch('src/styles/**/*.scss', ['styles']);
+    // Watch .js files
+    //gulp.watch('src/scripts/**/*.js', ['scripts']);
+    // Watch image files
+    gulp.watch('src/images/**/*', ['images']);
+});
