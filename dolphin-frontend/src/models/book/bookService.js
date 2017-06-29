@@ -2,8 +2,9 @@
  * Created by yangbajing(yangbajing@gmail.com) on 2017-06-28.
  */
 
-import * as types from "../models/type";
+//import * as types from "../models/type";
 
 export function findBookById(id) {
-    return dispatch({type: types.SUCCESS, data});
+    console.info("d");
+    //return dispatch({type: types.SUCCESS, data});
 }

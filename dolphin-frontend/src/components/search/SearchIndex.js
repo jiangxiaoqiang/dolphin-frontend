@@ -17,7 +17,7 @@ export default class SearchIndex extends React.Component {
     }
 
     componentWillMount() {
-        this.props.bookService.findBookById(134);
+        //this.props.bookService.findBookById(134);
     }
 
     componentDidMount() {
