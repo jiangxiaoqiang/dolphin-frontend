@@ -8,9 +8,25 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 // 创建组件,注意使用ES6的写法
 export default class SearchIndex extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            checkAll: true
+        };
+    }
+
+    componentWillMount() {
+        this.props.bookService.findBookById(134);
+    }
+
+    componentDidMount() {
+
+    }
+
     render() {
         return (
-            <RaisedButton label="Default"/>
+            <RaisedButton label="确定"/>
         );
     }
 }

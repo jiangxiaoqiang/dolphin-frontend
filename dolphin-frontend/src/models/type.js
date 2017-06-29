@@ -4,5 +4,6 @@
 
 export const bookType = {
     SEARCH: 'SEARCH',
-    SEARCHING: 'SEARCHING'
+    SEARCHING: 'SEARCHING',
+    SUCCESS:'SUCCESS'
 }
