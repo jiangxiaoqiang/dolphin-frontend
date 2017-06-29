@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from "react-redux";
-import SearchIndex from './components/search/SearchIndex'
+import Book from './components/search/Book'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import store from './models/store';
-import bookRoute from './routes/BookRoute';
+import routes from './routes/routes';
 
 const App = () => (
     <MuiThemeProvider>
-        <SearchIndex />
+        <Book />
     </MuiThemeProvider>
 );
 
@@ -16,7 +16,7 @@ const rootElement = document.getElementById('root');
 
 ReactDOM.render(
     <Provider store={store}>
-        <App></App>
+        {routes}
     </Provider>,
     rootElement
 );
