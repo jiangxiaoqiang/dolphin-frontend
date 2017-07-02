@@ -4,29 +4,38 @@
 
 import React from 'react';
 import {render} from 'react-dom';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
+import {bookType} from '../../models/type';
 
 // 创建组件,注意使用ES6的写法
-export default class SearchIndex extends React.Component {
+export default class Book extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            checkAll: true
-        };
     }
 
     componentWillMount() {
-        //this.props.bookService.findBookById(134);
+        this.props.bookService.findBookById();
     }
 
     componentDidMount() {
 
     }
 
+
     render() {
         return (
-            <RaisedButton label="确定"/>
+            <MuiThemeProvider>
+                <div>dd</div>
+            </MuiThemeProvider>
         );
     }
 }
+
+export function getBook() {
+    return dispatch => {
+        setTimeout(() => dispatch({type: bookType.SUCCESS}), 1000)
+    }
+}
+

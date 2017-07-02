@@ -6,9 +6,9 @@ import {bookType} from '../type';
 
 const initState = {};
 
-export default function creditDocumentReducer(state =initState, action) {
+export default function bookReducer(state = initState, action) {
     switch (action.type) {
-        case bookType.SEARCH:
-            return state.set(bookType.SEARCH,action.data).set(bookType.SEARCHING,false);
+        //case bookType.SEARCH:
+            //return state.set(bookType.SEARCH,action.data).set(bookType.SEARCHING,false);
     }
 }

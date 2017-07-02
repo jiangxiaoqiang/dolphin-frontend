@@ -1,39 +1,42 @@
-import {connect} from 'react-redux';
-import {bindActionCreators} from "redux";
 import React, {Component} from "react";
+import {BrowserRouter, Route} from 'react-router-dom'
+import Book from '../components/search/Book'
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
 import * as bookService from "../models/book/bookService";
-//import * as types from "../models/type";
+import {bookType} from '../models/type';
 import * as TYPES from "../models/type";
-//import Route from 'react-router';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
-import AppContainer from "../container/AppContainer";
-import Book from '../components/search/Book';
-import App from '../components/search/App';
 
 /*
- connect((book) => (book),
- dispath => ({
- //bookService: bindActionCreators(bookService, dispatch)
- }))
+ const hashHistory = createBrowserHistory();
  */
 
-/*class BookRouteContaier extends Component {
- render() {
- return React.cloneElement(this.props.children, {TYPES, ...this.props});
- }
- }*/
+connect((state => ({
+        book: state.book
+    })),
+    dispatch => ({
+        bookService: bindActionCreators(bookService, dispatch)
+    })
+)
 
+const User = ({match}) => {
+    return <h1>Hello {match.params.username}!</h1>
+}
+
+class BookContainer extends Component {
+    render() {
+        return React.cloneElement(this.props.children, {...this.props});
+    }
+}
 
 const routes = (
-   /* <BrowserRouter>
-        <div>
-            <Provider store={store}>*/
-                <Router>
-                    <Route exact path="/" component={App} />
-                </Router>
-        /*    </Provider>
-        </div>
-    </BrowserRouter>*/
+    <BrowserRouter>
+        <BookContainer>
+            <switch>
+                <Route path="/book/:id" render={() => <Book bookService={bookService}/>}/>
+            </switch>
+        </BookContainer>
+    </BrowserRouter>
 );
 
 export default routes;

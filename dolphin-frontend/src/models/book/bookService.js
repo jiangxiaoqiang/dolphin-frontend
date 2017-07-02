@@ -4,7 +4,7 @@
 
 //import * as types from "../models/type";
 
-export function findBookById(id) {
+export function findBookById() {
     console.info("d");
     //return dispatch({type: types.SUCCESS, data});
 }
