@@ -4,25 +4,28 @@ import Book from '../components/search/Book'
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import * as bookService from "../models/book/bookService";
-import {bookType} from '../models/type';
-import * as TYPES from "../models/type";
+//import {bookType} from '../models/type';
+//import * as TYPES from "../models/type";
 
-/*
- const hashHistory = createBrowserHistory();
+/**
+ * mapStateToProps:这个函数的作用是确定哪些 Redux 全局的 state 是我们组件想要通过 props 获取
  */
-
-connect((state => ({
-        book: state.book
-    })),
-    dispatch => ({
-        bookService: bindActionCreators(bookService, dispatch)
-    })
-)
-
-const User = ({match}) => {
-    return <h1>Hello {match.params.username}!</h1>
+const mapStateToProps = (state) => {
+    return {
+        book:state.book
+    }
 }
 
+/**
+ * mapDispatchToProps:这个方法的作用是确定 哪些action创建函数是我们想要通过props获取
+ */
+const mapDispatchToProps = (dispatch) => {
+    return {
+        bookService: bindActionCreators(bookService, dispatch)
+    }
+}
+
+connect(mapStateToProps, mapDispatchToProps)
 class BookContainer extends Component {
     render() {
         return React.cloneElement(this.props.children, {...this.props});
