@@ -15,7 +15,7 @@ export default function bookReducer(state = fromJS(initState), action) {
             break;
         case bookType.SUCCESS:
             console.log("SUCCESS...action data:", action.data);
-            console.log("reducer更新后的state",state.set(bookType.SUCCESS, fromJS(action.data)))
+            console.log("reducer更新后的state",state.set(bookType.SUCCESS, fromJS(action.data)) )
             return state.set(bookType.SUCCESS, fromJS(action.data));
         default:
             return state;

@@ -1,4 +1,5 @@
 var path = require('path');
+process.env.NODE_ENV = 'development';
 var basePath = path.resolve(__dirname, '..');
 
 module.exports = {

@@ -1,10 +1,12 @@
 import React, {Component} from "react";
-import {BrowserRouter, Route} from 'react-router-dom'
+import {BrowserRouter, Route, withRouter} from 'react-router-dom'
 import Book from '../components/search/Book'
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import * as bookService from "../models/book/bookService";
-//import {bookType} from '../models/type';
+import * as userService from "../models/user/userService";
+
+import {bookType} from '../models/type';
 //import * as TYPES from "../models/type";
 
 /**
@@ -12,7 +14,7 @@ import * as bookService from "../models/book/bookService";
  */
 const mapStateToProps = (state) => {
     return {
-        book:state.book
+        book: state.book
     }
 }
 
@@ -21,7 +23,8 @@ const mapStateToProps = (state) => {
  */
 const mapDispatchToProps = (dispatch) => {
     return {
-        bookService: bindActionCreators(bookService, dispatch)
+        bookService: bindActionCreators(bookService, dispatch),
+        userService: bindActionCreators(userService, dispatch)
     }
 }
 
@@ -32,11 +35,14 @@ class BookContainer extends Component {
     }
 }
 
+//export default withRouter(BookContainer);
+
 const routes = (
     <BrowserRouter>
         <BookContainer>
             <switch>
-                <Route path="/book/:id" render={() => <Book bookService={bookService}/>}/>
+                <Route path="/book/:id"
+                       render={(props) => <Book bookService={bookService} bookState={'111'}/>}/>
             </switch>
         </BookContainer>
     </BrowserRouter>

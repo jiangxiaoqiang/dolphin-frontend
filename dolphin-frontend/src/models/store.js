@@ -3,7 +3,10 @@
  */
 import {combineReducers, createStore,applyMiddleware} from "redux";
 import bookReducer from './book/bookReducer';
+import userReducer from './user/userReducer';
 import thunkMiddleware from "redux-thunk";
+import {Iterable} from "immutable";
+import {createLogger} from 'redux-logger';
 
 //const nameList = ['book'];
 
@@ -15,7 +18,25 @@ const state = {};
 }*/
 
 state[0] = bookReducer;
+state[1] = userReducer;
 const middleware = [thunkMiddleware];
+
+if (process.env.NODE_ENV === 'development') {
+    const logger = createLogger({
+        stateTransformer: (state) => {
+            let newState = {};
+            for (let i of Object.keys(state)) {
+                if (Iterable.isIterable(state[i])) {
+                    newState[i] = state[i].toJS();
+                } else {
+                    newState[i] = state[i];
+                }
+            }
+            return newState;
+        }
+    });
+    middleware.push(logger);
+}
 
 const reducers = combineReducers(state);
 
