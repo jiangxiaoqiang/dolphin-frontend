@@ -29,10 +29,11 @@
     "redux-thunk": "^2.2.0",
     "requirejs": "^2.3.3",
     "vinyl-source-stream": "^1.1.0",
-    "webpack": "^3.0.0"
+    "webpack": "^3.0.0",
+    "webpack-bundle-analyzer": "^2.8.2"
   },
   "scripts": {
-    "dev": "webpack --watch --progress --colors --display-error-details --config webpack/dev.config.js",
+    "dev": "webpack --display-chunks --watch --progress --colors --display-error-details --config webpack/dev.config.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
