@@ -9,9 +9,10 @@ export function request(config, success) {
     }).then(
         response => {
             console.log("Axios请求服务端返回结果是：", response);
+            const book = response.data;
             store.dispatch({
-                type:bookType.SUCCESS,
-                data: {response, type:'ok'}
+                type: bookType.SUCCESS,
+                book
             });
             Promise.resolve(response);
         }
