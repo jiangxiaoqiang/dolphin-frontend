@@ -48,8 +48,8 @@ export default class Book extends React.Component {
     render() {
         //let {book} = this.props;
         //console.log("界面上获取的数据props:", this.props);
-        //console.log("界面上获取的数据state:", this.state);
-console.log("调用render");
+        console.log("界面上获取的数据state:", this.state);
+//console.log("调用render");
         //console.log("获取的book是：", this.props.book);
         //const bookInfo = Utils.getToObject({book:'a'}, bookType.SUCCESS);
         //console.log("从state中取出的书籍信息是：", bookInfo);

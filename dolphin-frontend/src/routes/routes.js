@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import * as bookService from "../models/book/bookService";
 import * as userService from "../models/user/userService";
-
+import store from '../models/store';
 import {bookType} from '../models/type';
 //import * as TYPES from "../models/type";
 
@@ -23,8 +23,8 @@ const mapStateToProps = (state) => {
  */
 const mapDispatchToProps = (dispatch) => {
     return {
-        bookService: bindActionCreators(bookService, dispatch),
-        userService: bindActionCreators(userService, dispatch)
+        bookService: bindActionCreators(bookService, dispatch)
+        //userService: bindActionCreators(userService, dispatch)
     }
 }
 
@@ -42,7 +42,7 @@ const routes = (
         <BookContainer>
             <switch>
                 <Route path="/book/:id"
-                       render={(props) => <Book bookService={bookService} bookState={'111'}/>}/>
+                       render={(props) => <Book bookService={bookService} bookState={store.state}/>}/>
             </switch>
         </BookContainer>
     </BrowserRouter>
