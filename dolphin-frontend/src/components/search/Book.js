@@ -3,63 +3,101 @@
  */
 
 import React from 'react';
-//import {render} from 'react-dom';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import store from '../../models/store';
-//import RaisedButton from 'material-ui/RaisedButton';
-//import {bookType} from '../../models/type';
-//import Utils from '../../common/Utils';
+import {findBookById} from "../../service/bookService";
+import AppBar from 'material-ui/AppBar';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+import {GridList, GridTile} from 'material-ui/GridList';
+import IconButton from 'material-ui/IconButton';
+import Subheader from 'material-ui/Subheader';
+import StarBorder from 'material-ui/svg-icons/toggle/star-border';
+import {User} from '../../components/user/User';
 
-// 创建组件,注意使用ES6的写法
+
 export default class Book extends React.Component {
-
     constructor(props) {
         super(props);
     }
 
     componentWillMount() {
-        //store.subscribe((state) => this.setState(state));
-        console.log("componentWillMount",this.props.bookState);
-        this.props.bookService.findBookById();
     }
 
-    shouldComponentUpdate(){
-        console.log("shouldComponentUpdate");
-        return true;
-    }
-
-    componentWillReceiveProps() {
-        console.log("componentDidUpdate...");
-    }
-
-    componentDidMount() {
-        console.log("componentDidMount");
-        console.log("componentDidMount界面上获取的数据props:", this.props);
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        console.log("componentDidUpdate数据props:", this.props);
-    }
-
-    handleChange(e) {
-        console.log("dfafgag:", e);
+    getBookInfo() {
+        console.log("get book info");
+        findBookById();
     }
 
     render() {
-        //let {book} = this.props;
-        //console.log("界面上获取的数据props:", this.props);
-        console.log("界面上获取的数据state:", this.state);
-//console.log("调用render");
-        //console.log("获取的book是：", this.props.book);
-        //const bookInfo = Utils.getToObject({book:'a'}, bookType.SUCCESS);
-        //console.log("从state中取出的书籍信息是：", bookInfo);
 
+        function handleTouchTap() {
+            alert('onTouchTap triggered on the title component');
+        }
+
+        const styles = {
+            root: {
+                display: 'flex',
+                flexWrap: 'wrap',
+                justifyContent: 'space-around',
+            },
+            gridList: {
+                width: 500,
+                height: 450,
+                overflowY: 'auto',
+            },
+        };
+
+        console.log("bookname:" + this.props.bookname);
+
+        const tilesData = [
+            {
+                img: 'http://jiangxiaoqiang.com/2016/09/24/eclipse-breakpoint-type/method-breakpoint.jpg',
+                title: 'dd',
+                author: 'jill111',
+            }
+        ];
 
         return (
             <MuiThemeProvider>
-                <div>dd</div>
+                <div>
+                    <div>
+                        <AppBar
+                            title="首页"
+                            onTitleTouchTap={handleTouchTap}
+                        />
+                    </div>
+                    <TextField
+                        hintText="请输入书名"
+                    />
+
+                    <button onClick={() => this.getBookInfo()}>查询</button>
+
+                    <br />
+
+                    <div style={styles.root}>
+                        <table>
+                            <tbody>
+                            <tr>
+                                <td>书名：{this.props.book.name}</td>
+                            </tr>
+                            <tr>
+                                <td>作者：{this.props.book.author}</td>
+                            </tr>
+                            <tr>
+                                <td>出版社：{this.props.book.publisher}</td>
+                            </tr>
+                            <tr>
+                                <td>ISBN：{this.props.book.isbn}</td>
+                            </tr>
+                            <tr>
+                                <td>价格：{this.props.book.price}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </MuiThemeProvider>
-        );
+        )
     }
 }
 

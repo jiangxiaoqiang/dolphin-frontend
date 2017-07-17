@@ -1,8 +1,8 @@
 import axios from 'axios';
-import {bookType} from './type';
-import store from './store';
+import store from "../store";
+import {searchBookById} from "../actions/bookActions";
 
-export function request(config, success) {
+export function request(config) {
     console.log("进入Axios请求...");
     return axios({
         method: 'get', url: 'http://localhost:8011/api/book/111'
@@ -10,10 +10,7 @@ export function request(config, success) {
         response => {
             console.log("Axios请求服务端返回结果是：", response);
             const book = response.data;
-            store.dispatch({
-                type: bookType.SUCCESS,
-                book
-            });
+            store.dispatch(searchBookById(book));
             Promise.resolve(response);
         }
     ).catch(
