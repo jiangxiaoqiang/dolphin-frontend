@@ -8,6 +8,14 @@ export function searchBook(isbn) {
     };
 }
 
+export function findBooksByName(books) {
+    console.log(books);
+    return {
+        type: "FIND_BOOKS_BY_NAME",
+        books: books
+    };
+}
+
 export function searchBookById(book) {
     return {
         type: "SEARCH_BOOK_BY_ID",

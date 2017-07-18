@@ -17,3 +17,19 @@ export function request(config) {
         }
     );
 }
+
+export function requestWithAction(config, action) {
+    return axios(config).then(
+        response => {
+            console.log("Axios请求服务端返回结果是：", response.data.data);
+            const data = response.data.data;
+            store.dispatch(action(data));
+            Promise.resolve(response);
+        }
+    ).catch(
+        error => {
+            console.error(error);
+            Promise.reject();
+        }
+    );
+}

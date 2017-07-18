@@ -4,6 +4,7 @@
 
 import React from 'react';
 import {findBookById} from "../../service/bookService";
+import {getBooksByName} from "../../service/bookService";
 import AppBar from 'material-ui/AppBar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import TextField from 'material-ui/TextField';
@@ -24,12 +25,16 @@ export default class Book extends React.Component {
     }
 
     getBookInfo() {
-        console.log("get book info");
-        findBookById();
+        //findBookById();
+        const userInput = document.getElementById("userInput");
+        if (userInput.value.length > 0) {
+            getBooksByName(userInput.value);
+        }
     }
 
     render() {
 
+        console.log("书籍信息：" + this.props.books);
         function handleTouchTap() {
             alert('onTouchTap triggered on the title component');
         }
@@ -47,7 +52,7 @@ export default class Book extends React.Component {
             },
         };
 
-        console.log("bookname:" + this.props.bookname);
+        console.log("bookname:" + this.props.books);
 
         const tilesData = [
             {
@@ -66,8 +71,9 @@ export default class Book extends React.Component {
                             onTitleTouchTap={handleTouchTap}
                         />
                     </div>
-                    <TextField
-                        hintText="请输入书名"
+                    <TextField id="userInput"
+                               hintText="请输入书名"
+
                     />
 
                     <button onClick={() => this.getBookInfo()}>查询</button>

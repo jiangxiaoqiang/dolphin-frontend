@@ -17,7 +17,7 @@ class App extends React.Component {
     render() {
         return (
             <div className="container">
-                <Book searchBook={() => this.props.searchBookById("sssss") } book={this.props.book}/>
+                <Book books={this.props.books} searchBook={() => this.props.searchBookById("sssss") } book={this.props.book}/>
             </div>
         )
     }
