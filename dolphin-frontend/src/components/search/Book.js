@@ -72,8 +72,6 @@ export default class Book extends React.Component {
 
                     <button onClick={() => this.getBookInfo()}>查询</button>
 
-                    <br />
-
                     <div style={styles.root}>
                         <table>
                             <tbody>

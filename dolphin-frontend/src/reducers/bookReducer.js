@@ -4,7 +4,7 @@
 
 
 const bookReducer = (state = {
-    name: 'bookname',
+    name: '',
     isbn: '',
     author: '',
     publisher: '',
