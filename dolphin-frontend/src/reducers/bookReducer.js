@@ -10,7 +10,7 @@ const bookReducer = (state = {
     switch (action.type) {
         case "FIND_BOOKS_BY_NAME":
             state = {
-                ...action.data
+                ...action.books
             };
             break;
         case "SEARCH_BOOK_BY_ID":

@@ -9,7 +9,6 @@ export function searchBook(isbn) {
 }
 
 export function findBooksByName(books) {
-    console.log(books);
     return {
         type: "FIND_BOOKS_BY_NAME",
         books: books
