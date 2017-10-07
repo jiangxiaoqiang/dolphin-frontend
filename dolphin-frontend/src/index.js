@@ -6,9 +6,6 @@ import routes from "./routes/routes"
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 ReactDOM.render(
-
-
-
     <Provider store={store}>
         {routes}
     </Provider>,
