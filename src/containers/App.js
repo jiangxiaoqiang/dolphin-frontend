@@ -3,8 +3,6 @@
  */
 import React from 'react';
 import {connect} from 'react-redux';
-import {Main} from '../components/user/Main';
-import {User} from '../components/user/User';
 import {setName} from "../actions/userActions"
 import {searchBookById} from "../actions/bookActions";
 import Book from "../components/search/Book";
@@ -17,7 +15,7 @@ class App extends React.Component {
     render() {
         return (
             <div className="container">
-                <Book books={this.props.book} searchBook={() => this.props.searchBookById("sssss") } book={this.props.book}/>
+                {/*<Book books={this.props.book} searchBook={() => this.props.searchBookById("sssss") } book={this.props.book}/>*/}
             </div>
         )
     }
