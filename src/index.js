@@ -6,12 +6,14 @@ import routes from "./routes/routes"
 import {BrowserRouter, Route} from "react-router-dom";
 import CreateBook from "./components/book/CreateBook";
 import Book from "./components/search/Book";
+import BookShelf from "./components/user/BookSelf";
 
 ReactDOM.render(
     <BrowserRouter>
         <div>
             <Route path="/create/book" component={CreateBook}></Route>
             <Route path="/book/:id" component={Book}></Route>
+            <Route path="/user/shelf" component={BookShelf}></Route>
         </div>
     </BrowserRouter>
     , document.getElementById('root')
