@@ -29,3 +29,10 @@ export function searchBookById(book) {
      }, 2000);
      };*/
 }
+
+export function createBookToShelf(book) {
+    return {
+        type: "CREATE_BOOK_TO_SHELF",
+        book: book
+    };
+}

@@ -11,9 +11,9 @@ import BookShelf from "./components/user/BookSelf";
 ReactDOM.render(
     <BrowserRouter>
         <div>
-            <Route path="/create/book" component={CreateBook}></Route>
-            <Route path="/book/:id" component={Book}></Route>
-            <Route path="/user/shelf" component={BookShelf}></Route>
+            <Route path="/dolphin/create/book" component={CreateBook}></Route>
+            <Route path="/dolphin/book/:id" component={Book}></Route>
+            <Route path="/dolphin/user/shelf" component={BookShelf}></Route>
         </div>
     </BrowserRouter>
     , document.getElementById('root')
