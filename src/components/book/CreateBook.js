@@ -7,6 +7,8 @@ import AppBar from 'material-ui/AppBar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import {addBookToShelf} from '../../service/bookService';
+import Book from "../search/Book";
 
 export default class CreateBook extends React.Component {
 
@@ -17,9 +19,25 @@ export default class CreateBook extends React.Component {
     componentWillMount() {
     }
 
-
+    handleAdd = () => {        
+        const isbn = document.getElementById("isbnInput").value;
+        const bookName = document.getElementById("bookName").value;
+        const publisher = document.getElementById("publisher").value;
+        const author = document.getElementById("author").value;
+        const price = document.getElementById("price").value;
+        var book = {
+            isbn:isbn,
+            name:bookName,
+            author:author,
+            publisher:publisher,
+            price:price
+        };
+        book.isbn = isbn;
+        addBookToShelf(book);
+    }
+    
     render() {
-
+        
         const style = {
             margin: 12,
         };
@@ -39,18 +57,18 @@ export default class CreateBook extends React.Component {
                         iconClassNameRight="muidocs-icon-navigation-expand-more"
                     />
                     <div>
-                        <TextField id="a" hintText="ISBN"/>
+                        <TextField id="isbnInput" hintText="ISBN"/>
                         <br/>
-                        <TextField id="b" hintText="书名"/>
+                        <TextField id="bookName" hintText="书名"/>
                         <br/>
-                        <TextField id="c" hintText="出版社"/>
+                        <TextField id="publisher" hintText="出版社"/>
                         <br/>
-                        <TextField id="d" hintText="作者"/>
+                        <TextField id="author" hintText="作者"/>
                         <br/>
-                        <TextField id="e" hintText="价格"/>
+                        <TextField id="price" hintText="价格"/>
                     </div>
                     <div>
-                        <RaisedButton label="提交" primary={true} style={style} />
+                        <RaisedButton label="添加" primary={true} style={style} onClick={()=>this.handleAdd()}/>
                     </div>
                 </div>
             </MuiThemeProvider>

@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from "react-dom";
-import {Provider} from 'react-redux';
 import store from "./store";
-import routes from "./routes/routes"
+import routes from "./routes/routes";
 import {BrowserRouter, Route} from "react-router-dom";
 import CreateBook from "./components/book/CreateBook";
 import Book from "./components/search/Book";
