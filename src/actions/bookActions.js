@@ -36,3 +36,10 @@ export function createBookToShelf(book) {
         book: book
     };
 }
+
+export function createPublisher(publisher) {
+    return {
+        type:"CREATE_PUBLISHER",
+        publisher:publisher
+    };
+}

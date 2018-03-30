@@ -4,7 +4,8 @@
 
 import {request, requestWithAction} from '../common/XHRClient';
 
-import {findBooksByName, createBookToShelf} from "../actions/bookActions";
+import {findBooksByName, createBookToShelf, createPublisher} from "../actions/bookActions";
+import globalConfig from "../global.config.json";
 
 export function findBookById() {
     const config = {method: 'get', url: 'http://localhost:8011/api/book/111'};
@@ -22,8 +23,18 @@ export function getBooksByName(name) {
 export function addBookToShelf(book) {
     const config = {
         method: 'post',
-        url: 'http://localhost:8011/dolphin/api/user/shelf/add',
+        url: globalConfig.apiServerUrl + '/dolphin/api/user/shelf/add',
         data: book
     };
     return requestWithAction(config, createBookToShelf)
+}
+
+
+export function addPublisher(publisher) {
+    const config = {
+        method: 'post',
+        url: globalConfig.apiServerUrl + '/dolphin/api/dic/publisher',
+        data: publisher
+    };
+    return requestWithAction(config, createPublisher)
 }
