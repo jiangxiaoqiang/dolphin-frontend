@@ -34,7 +34,7 @@ export default class CreateBook extends React.Component {
         };
         book.isbn = isbn;
         addBookToShelf(book);
-    }
+    };
     
     render() {
         
@@ -53,7 +53,7 @@ export default class CreateBook extends React.Component {
             <MuiThemeProvider>
                 <div>
                     <AppBar
-                        title="添加"
+                        title="添加书"
                         iconClassNameRight="muidocs-icon-navigation-expand-more"
                     />
                     <div>

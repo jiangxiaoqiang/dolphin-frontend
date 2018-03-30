@@ -4,15 +4,17 @@ import store from "./store";
 import routes from "./routes/routes";
 import {BrowserRouter, Route} from "react-router-dom";
 import CreateBook from "./components/book/CreateBook";
+import CreatePublisher from "./components/book/CreatePublisher";
 import Book from "./components/search/Book";
 import BookShelf from "./components/user/BookSelf";
 
 ReactDOM.render(
     <BrowserRouter>
         <div>
-            <Route path="/dolphin/create/book" component={CreateBook}></Route>
-            <Route path="/dolphin/book/:id" component={Book}></Route>
-            <Route path="/dolphin/user/shelf" component={BookShelf}></Route>
+            <Route path="/book" component={CreateBook}></Route>
+            <Route path="/book/:id" component={Book}></Route>
+            <Route path="/user/shelf" component={BookShelf}></Route>
+            <Route path="/publisher/create" component={CreatePublisher}/>
         </div>
     </BrowserRouter>
     , document.getElementById('root')
