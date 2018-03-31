@@ -7,6 +7,7 @@ import CreateBook from "./components/book/CreateBook";
 import CreatePublisher from "./components/book/CreatePublisher";
 import Book from "./components/search/Book";
 import BookShelf from "./components/user/BookSelf";
+import CreateAuthor from "./components/author/CreateAuthor";
 
 ReactDOM.render(
     <BrowserRouter>
@@ -15,6 +16,7 @@ ReactDOM.render(
             <Route path="/book/:id" component={Book}></Route>
             <Route path="/user/shelf" component={BookShelf}></Route>
             <Route path="/publisher/create" component={CreatePublisher}/>
+            <Route path="/author/create" component={CreateAuthor}/>
         </div>
     </BrowserRouter>
     , document.getElementById('root')
