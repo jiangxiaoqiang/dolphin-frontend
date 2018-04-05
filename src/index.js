@@ -13,8 +13,8 @@ import Login from "./components/user/Login";
 ReactDOM.render(
     <BrowserRouter>
         <div>
-            <Route path="/book" component={CreateBook}></Route>
-            <Route path="/book/:id" component={Book}></Route>
+            <Route path="/book/create" component={CreateBook}></Route>
+            <Route path="/book/id" component={Book}></Route>
             <Route path="/user/shelf" component={BookShelf}></Route>
             <Route path="/publisher/create" component={CreatePublisher}/>
             <Route path="/author/create" component={CreateAuthor}/>

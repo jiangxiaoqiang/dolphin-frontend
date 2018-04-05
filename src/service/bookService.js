@@ -20,6 +20,14 @@ export function getBooksByName(name) {
     return requestWithAction(config, findBooksByName);
 }
 
+export function getAllBooks() {
+    const config = {
+        method: 'get',
+        url: globalConfig.apiServerUrl + '/dolphin/api/book/all/1'
+    };
+    return requestWithAction(config, findBooksByName);
+}
+
 export function addBookToShelf(book) {
     const config = {
         method: 'post',

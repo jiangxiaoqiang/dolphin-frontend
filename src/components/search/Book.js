@@ -21,7 +21,6 @@ export default class Book extends React.Component {
     }
 
     getBookInfo() {
-        //findBookById();
         const userInput = document.getElementById("userInput");
         if (userInput.value.length > 0) {
             getBooksByName(userInput.value);

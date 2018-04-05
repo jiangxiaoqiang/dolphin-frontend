@@ -1,10 +1,7 @@
-/**
- * Created by hldev on 18-3-27.
- */
-
 import React, {Component} from "react";
 import AppBar from 'material-ui/AppBar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import RaisedButton from 'material-ui/RaisedButton';
 import {
     Table,
     TableBody,
@@ -13,16 +10,21 @@ import {
     TableRow,
     TableRowColumn,
 } from 'material-ui/Table';
+import { getAllBooks } from '../../service/bookService';
 
-export default class CreateBook extends React.Component {
+export default class BookSelf extends React.Component {
 
     constructor(props) {
         super(props);
     }
 
     componentWillMount() {
+
     }
 
+    handleFetch() {
+        getAllBooks();
+    }
 
     render() {
 
@@ -81,6 +83,9 @@ export default class CreateBook extends React.Component {
                                 </TableRow>
                             </TableBody>
                         </Table>
+                    </div>
+                    <div>
+                        <RaisedButton label="查看" primary={true} style={style} onClick={() => this.handleFetch()} />
                     </div>
                 </div>
             </MuiThemeProvider>
