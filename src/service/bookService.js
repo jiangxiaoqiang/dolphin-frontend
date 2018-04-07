@@ -3,8 +3,8 @@
  */
 
 import {request, requestWithAction} from '../common/XHRClient';
-
-import {findBooksByName, createBookToShelf, createPublisher} from "../actions/bookActions";
+import {} from '../reducers/bookReducer';
+import {findBooksByName, createBookToShelf, createPublisher,getAllBooks} from "../actions/bookActions";
 import globalConfig from "../global.config.json";
 
 export function findBookById() {
@@ -20,12 +20,12 @@ export function getBooksByName(name) {
     return requestWithAction(config, findBooksByName);
 }
 
-export function getAllBooks() {
+export function findAllBooks() {
     const config = {
         method: 'get',
         url: globalConfig.apiServerUrl + '/dolphin/api/book/all/1'
     };
-    return requestWithAction(config, findBooksByName);
+    return requestWithAction(config, getAllBooks);
 }
 
 export function addBookToShelf(book) {

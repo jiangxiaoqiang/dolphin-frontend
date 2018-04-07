@@ -4,6 +4,7 @@ import Book from '../components/search/Book';
 import BookCreate from '../components/book/CreateBook';
 import App from "../containers/App";
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import BookShelf from "../components/user/BookShelf";
 
 injectTapEventPlugin();
 
@@ -15,7 +16,7 @@ const routes = (
                        render={(props) => <Book />}/>
             </switch>*/}
             <switch>
-                <Route path="book1/create" render={(props) => <BookCreate/>}/>
+                <Route path="/user/shelf" render={(props) => <BookShelf/>}/>
             </switch>
         </App>
     </BrowserRouter>

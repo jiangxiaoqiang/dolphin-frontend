@@ -15,19 +15,20 @@ export function findBooksByName(books) {
     };
 }
 
+export function getAllBooks(data) {
+    return {
+        type: "GET_ALL_BOOKS",
+        book: {
+            book: data
+        }
+    };
+}
+
 export function searchBookById(book) {
     return {
         type: "SEARCH_BOOK_BY_ID",
         book: book
     };
-    /*return dispatch => {
-     setTimeout(() => {
-     dispatch({
-     type: "SEARCH_BOOK_BY_ID",
-     name: name
-     });
-     }, 2000);
-     };*/
 }
 
 export function createBookToShelf(book) {
@@ -39,7 +40,7 @@ export function createBookToShelf(book) {
 
 export function createPublisher(publisher) {
     return {
-        type:"CREATE_PUBLISHER",
-        publisher:publisher
+        type: "CREATE_PUBLISHER",
+        publisher: publisher
     };
 }

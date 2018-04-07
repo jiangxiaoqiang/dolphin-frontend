@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import AppBar from 'material-ui/AppBar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -10,9 +10,11 @@ import {
     TableRow,
     TableRowColumn,
 } from 'material-ui/Table';
-import { getAllBooks } from '../../service/bookService';
+import { findAllBooks } from '../../service/bookService';
+import { Utils } from "handlebars";
+import  DolphinUtils  from "../../common/DolphinUtils";
 
-export default class BookSelf extends React.Component {
+export default class BookShelf extends React.Component {
 
     constructor(props) {
         super(props);
@@ -23,11 +25,13 @@ export default class BookSelf extends React.Component {
     }
 
     handleFetch() {
-        getAllBooks();
+        findAllBooks();
     }
 
     render() {
 
+        const books = this.props.books;
+        
         const style = {
             margin: 12,
         };

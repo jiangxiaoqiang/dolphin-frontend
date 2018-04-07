@@ -8,12 +8,10 @@ export function request(config) {
             console.log("Axios请求服务端返回结果是：", response.data.data);
             const book = response.data.data;
             store.dispatch(searchBookById(book));
-            Promise.resolve(response);
         }
     ).catch(
         error => {
             console.error(error);
-            Promise.reject();
         }
     );
 }
@@ -21,15 +19,13 @@ export function request(config) {
 export function requestWithAction(config, action) {
     return axios(config).then(
         response => {
-            console.log("Axios请求服务端返回结果是：", response.data.data);
+            console.log("Axios请求服务端返回结果是：", response.data);
             const data = response.data.data;
             store.dispatch(action(data));
-            Promise.resolve(response);
         }
     ).catch(
         error => {
             console.error(error);
-            Promise.reject();
         }
     );
 }

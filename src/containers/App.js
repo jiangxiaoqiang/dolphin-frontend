@@ -4,8 +4,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {setName} from "../actions/userActions"
-import {searchBookById} from "../actions/bookActions";
+import {searchBookById,getAllBooks} from "../actions/bookActions";
 import Book from "../components/search/Book";
+import BookShelf from "../components/user/BookShelf";
 
 class App extends React.Component {
     constructor() {
@@ -15,7 +16,10 @@ class App extends React.Component {
     render() {
         return (
             <div className="container">
-                {/*<Book books={this.props.book} searchBook={() => this.props.searchBookById("sssss") } book={this.props.book}/>*/}
+{/*
+                <Book books={this.props.book} searchBook={() => this.props.searchBookById("sssss") } book={this.props.book}/>
+*/}
+                <BookShelf books={this.props.book} getBooks={() => this.props.getAllBooks(this.props.book) }/>
             </div>
         )
     }
@@ -36,6 +40,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         searchBookById: (name) => {
             dispatch(searchBookById(name));
+        },
+        getAllBooks:(book)=>{
+            dispatch(getAllBooks(book));
         }
     };
 };
