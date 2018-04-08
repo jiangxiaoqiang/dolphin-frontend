@@ -1,6 +1,9 @@
 /**
  * Created by dolphin on 15/7/2017.
  */
+
+import {bookType} from "../type/BookType";
+
 export function searchBook(isbn) {
     return {
         type: "SEARCH_BOOK_BY_ISBN",
@@ -17,7 +20,7 @@ export function findBooksByName(books) {
 
 export function getAllBooks(data) {
     return {
-        type: "GET_ALL_BOOKS",
+        type: bookType.GET_ALL_BOOKS,
         book: {
             book: data
         }

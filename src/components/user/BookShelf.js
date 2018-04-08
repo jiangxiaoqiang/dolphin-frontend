@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import AppBar from 'material-ui/AppBar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -10,9 +10,10 @@ import {
     TableRow,
     TableRowColumn,
 } from 'material-ui/Table';
-import { findAllBooks } from '../../service/bookService';
-import { Utils } from "handlebars";
+import {findAllBooks} from '../../service/bookService';
+import {Utils} from "handlebars";
 import DolphinUtils from "../../common/DolphinUtils";
+import store from "../../store";
 
 export default class BookShelf extends React.Component {
 
@@ -30,9 +31,13 @@ export default class BookShelf extends React.Component {
 
     render() {
 
-        const books = this.props.books;
+        const book1 = this.props.book;
+
+        let state = store.getState();
+
+        const books = state.book;
         let arr = [];
-        if (books.book && books.book.length > 0) {
+        if (books && books.book && books.book.length > 0) {
             for (let i in books.book) {
                 arr.push(books.book[i]);
             }
@@ -80,7 +85,7 @@ export default class BookShelf extends React.Component {
                         </Table>
                     </div>
                     <div>
-                        <RaisedButton label="查看" primary={true} style={style} onClick={() => this.handleFetch()} />
+                        <RaisedButton label="查看" primary={true} style={style} onClick={() => this.handleFetch()}/>
                     </div>
                 </div>
             </MuiThemeProvider>

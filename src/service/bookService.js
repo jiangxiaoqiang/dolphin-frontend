@@ -2,13 +2,16 @@
  * Created by jiangtingqiang(jiangtingqiang@gmail.com) on 2017-06-28.
  */
 
-import {request, requestWithAction} from '../common/XHRClient';
-import {} from '../reducers/bookReducer';
-import {findBooksByName, createBookToShelf, createPublisher,getAllBooks} from "../actions/bookActions";
+import { request, requestWithAction } from '../common/XHRClient';
+import { } from '../reducers/bookReducer';
+import { findBooksByName, createBookToShelf, createPublisher, getAllBooks } from "../actions/bookActions";
 import globalConfig from "../global.config.json";
 
 export function findBookById() {
-    const config = {method: 'get', url: 'http://localhost:8011/api/book/111'};
+    const config = {
+        method: 'get',
+        url: 'http://localhost:8011/api/book/111'
+    };
     return request(config);
 }
 
