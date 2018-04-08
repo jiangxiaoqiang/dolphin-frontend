@@ -12,7 +12,7 @@ import {
 } from 'material-ui/Table';
 import { findAllBooks } from '../../service/bookService';
 import { Utils } from "handlebars";
-import  DolphinUtils  from "../../common/DolphinUtils";
+import DolphinUtils from "../../common/DolphinUtils";
 
 export default class BookShelf extends React.Component {
 
@@ -31,7 +31,13 @@ export default class BookShelf extends React.Component {
     render() {
 
         const books = this.props.books;
-        
+        let arr = [];
+        if (books.book && books.book.length > 0) {
+            for (let i in books.book) {
+                arr.push(books.book[i]);
+            }
+        }
+
         const style = {
             margin: 12,
         };
@@ -61,30 +67,15 @@ export default class BookShelf extends React.Component {
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
-                                <TableRow>
-                                    <TableRowColumn>1</TableRowColumn>
-                                    <TableRowColumn>John Smith</TableRowColumn>
-                                    <TableRowColumn>John Smith</TableRowColumn>
-                                    <TableRowColumn>Employed</TableRowColumn>
-                                </TableRow>
-                                <TableRow>
-                                    <TableRowColumn>3</TableRowColumn>
-                                    <TableRowColumn>Stephanie Sanders</TableRowColumn>
-                                    <TableRowColumn>John Smith</TableRowColumn>
-                                    <TableRowColumn>Employed</TableRowColumn>
-                                </TableRow>
-                                <TableRow>
-                                    <TableRowColumn>4</TableRowColumn>
-                                    <TableRowColumn>Steve Brown</TableRowColumn>
-                                    <TableRowColumn>John Smith</TableRowColumn>
-                                    <TableRowColumn>Employed</TableRowColumn>
-                                </TableRow>
-                                <TableRow>
-                                    <TableRowColumn>5</TableRowColumn>
-                                    <TableRowColumn>Christopher Nolan</TableRowColumn>
-                                    <TableRowColumn>John Smith</TableRowColumn>
-                                    <TableRowColumn>Unemployed</TableRowColumn>
-                                </TableRow>
+                                {arr.length > 0 && arr && arr !== undefined ? arr.map(function (book, index) {
+                                    return (
+                                        <TableRow>
+                                            <TableRowColumn>{index + 1}</TableRowColumn>
+                                            <TableRowColumn>{book.name}</TableRowColumn>
+                                            <TableRowColumn>{book.author}</TableRowColumn>
+                                            <TableRowColumn>{book.publisher}</TableRowColumn>
+                                        </TableRow>);
+                                }) : null}
                             </TableBody>
                         </Table>
                     </div>

@@ -10,11 +10,7 @@ injectTapEventPlugin();
 
 const routes = (
     <BrowserRouter>
-        <App>
-            {/*<switch>
-                <Route path="/book/:id"
-                       render={(props) => <Book />}/>
-            </switch>*/}
+        <App>           
             <switch>
                 <Route path="/user/shelf" render={(props) => <BookShelf/>}/>
             </switch>

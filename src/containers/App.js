@@ -16,9 +16,6 @@ class App extends React.Component {
     render() {
         return (
             <div className="container">
-{/*
-                <Book books={this.props.book} searchBook={() => this.props.searchBookById("sssss") } book={this.props.book}/>
-*/}
                 <BookShelf books={this.props.book} getBooks={() => this.props.getAllBooks(this.props.book) }/>
             </div>
         )
