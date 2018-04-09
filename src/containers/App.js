@@ -11,6 +11,8 @@ import {BrowserRouter, Route} from 'react-router-dom'
 import {bookType} from "../type/BookType";
 import {bindActionCreators} from "redux";
 import * as bookService from "../service/bookService";
+import CreateBook from "../components/book/CreateBook";
+import Index from "../components/main/Index";
 
 class App extends React.Component {
     constructor() {
@@ -20,8 +22,9 @@ class App extends React.Component {
     render() {
         return (
             <div className="container">
-                <Route path="/users" render={()=><BookShelf book={this.props.book}/>}/>
-                {/*<BookShelf books={this.props.book} getBooks={() => this.props.getAllBooks(this.props.book) }/>*/}
+                <Route path="/index" render={(props) => <Index/>}/>
+                <Route path="/user/shelf" render={() => <BookShelf book={this.props.book}/>}/>
+                <Route path="/book/create" render={() => <CreateBook book={this.props.book}/>}/>
             </div>
         )
     }

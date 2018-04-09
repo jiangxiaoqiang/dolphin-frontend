@@ -30,11 +30,8 @@ export default class BookShelf extends React.Component {
     }
 
     render() {
-
         const book1 = this.props.book;
-
         let state = store.getState();
-
         const books = state.book;
         let arr = [];
         if (books && books.book && books.book.length > 0) {
@@ -42,7 +39,6 @@ export default class BookShelf extends React.Component {
                 arr.push(books.book[i]);
             }
         }
-
         const style = {
             margin: 12,
         };

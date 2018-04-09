@@ -1,5 +1,5 @@
 /**
- * Created by hldev on 18-3-27.
+ * Created by jiangtingqiang@gmail.com on 18-3-27.
  */
 
 import React, {Component} from "react";

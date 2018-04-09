@@ -29,7 +29,6 @@ const bookReducer = (state = fromJS(initState), action) => {
             };
             break;
         case "GET_ALL_BOOKS":
-            //return state.set("GET_ALL_BOOKS", fromJS(action.book));            
             state = {
                 ...action.book
             };
