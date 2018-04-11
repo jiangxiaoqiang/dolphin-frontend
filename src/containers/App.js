@@ -25,7 +25,7 @@ class App extends React.Component {
             <div className="container">
                 <Route path="/index" render={(props) => <Index />} />
                 <Route path="/user/shelf" render={() => <BookShelf book={this.props.book} />} />
-                <Route path="/book/create" render={() => <CreateBook book={this.props.book} publisher={this.props.publisher} />} />
+                <Route path="/book/create" render={() => <CreateBook publisher={this.props.publisher} />} />
             </div>
         )
     }

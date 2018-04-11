@@ -22,7 +22,6 @@ ReactDOM.render(
 ReactDOM.render(
     <BrowserRouter>
         <div>
-            <Route path="/book/create" component={CreateBook}></Route>
             <Route path="/book/id" component={Book}></Route>
             <Route path="/user/shelf" component={App}></Route>
             <Route path="/publisher/create" component={CreatePublisher}/>

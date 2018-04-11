@@ -2,14 +2,16 @@
  * Created by jiangtingqiang@gmail.com on 18-3-27.
  */
 
-import React, { Component } from "react";
+import React, {Component} from "react";
 import AppBar from 'material-ui/AppBar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-import { addBookToShelf } from '../../service/bookService';
+import {addBookToShelf} from '../../service/bookService';
 import Book from "../search/Book";
-import { findAllPublisher } from "../../service/publisherService";
+import {findAllPublisher} from "../../service/publisherService";
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
 
 export default class CreateBook extends React.Component {
 
@@ -20,6 +22,10 @@ export default class CreateBook extends React.Component {
     componentWillMount() {
         //findAllPublisher();
     }
+
+    handleAddPublisher = () => {
+        findAllPublisher();
+    };
 
     handleAdd = () => {
         const isbn = document.getElementById("isbnInput").value;
@@ -38,12 +44,13 @@ export default class CreateBook extends React.Component {
         addBookToShelf(book);
     };
 
-    handlePublisherAdd = () => {
-            findAllPublisher();
-    };
-
     render() {
         const publishers = this.props.publisher;
+
+        var arr = [];
+        arr = Object.keys(publishers).map(function (key) {
+            return publishers[key];
+        });
 
         const style = {
             margin: 12,
@@ -64,19 +71,28 @@ export default class CreateBook extends React.Component {
                         iconClassNameRight="muidocs-icon-navigation-expand-more"
                     />
                     <div>
-                        <TextField id="isbnInput" hintText="ISBN" />
+                        <TextField id="isbnInput" hintText="ISBN"/>
                         <br />
-                        <TextField id="bookName" hintText="书名" />
+                        <TextField id="bookName" hintText="书名"/>
                         <br />
-                        <TextField id="publisher" hintText="出版社" />
+                        <SelectField
+                            floatingLabelText="出版社"
+                        >
+                            {arr.length > 7 && arr && arr !== undefined ? arr.map(function (book, index) {
+                                return (
+                                    <MenuItem value={index} primaryText={book.name}/>
+                                );
+                            }) : null}
+                        </SelectField>
                         <br />
-                        <TextField id="author" hintText="作者" />
+                        <TextField id="author" hintText="作者"/>
                         <br />
-                        <TextField id="price" hintText="价格" />
+                        <TextField id="price" hintText="价格"/>
                     </div>
                     <div>
-                        <RaisedButton label="添加" primary={true} style={style} onClick={() => this.handleAdd()} />
-                        <RaisedButton label="获取出版社" primary={true} style={style} onClick={() => this.handlePublisherAdd()} />
+                        <RaisedButton label="添加" primary={true} style={style} onClick={() => this.handleAdd()}/>
+                        <RaisedButton label="获取出版社" primary={true} style={style}
+                                      onClick={() => this.handleAddPublisher()}/>
                     </div>
                 </div>
             </MuiThemeProvider>

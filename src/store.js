@@ -5,7 +5,7 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import createLogger from 'redux-logger';
 import user from "./reducers/userReducer";
 import book from "./reducers/bookReducer";
-import publisher from "./reducers/bookReducer";
+import publisher from "./reducers/publisherReducer";
 import thunk from "redux-thunk";
 import promise from "redux-promise-middleware";
 
