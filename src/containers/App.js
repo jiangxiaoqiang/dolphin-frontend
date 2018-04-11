@@ -4,7 +4,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { setName } from "../actions/userActions";
-import {getAllPublishers} from "../actions/PublisherAction";
+import {getAllPublishers} from "../actions/publisherAction";
 import { searchBookById, getAllBooks } from "../actions/bookActions";
 import Book from "../components/search/Book";
 import BookShelf from "../components/user/BookShelf";
@@ -51,8 +51,8 @@ const mapDispatchToProps = (dispatch) => {
         getAllBooks: (book) => {
             dispatch(getAllBooks(book));
         },
-        getAllPublishers:()=>{
-            dispatch(getAllPublishers());
+        getAllPublishers:(publisher)=>{
+            dispatch(getAllPublishers(publisher));
         }
     };
 };

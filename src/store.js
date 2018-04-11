@@ -3,7 +3,6 @@
  */
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import createLogger from 'redux-logger';
-import math from "./reducers/mathReducer";
 import user from "./reducers/userReducer";
 import book from "./reducers/bookReducer";
 import publisher from "./reducers/bookReducer";
@@ -12,7 +11,6 @@ import promise from "redux-promise-middleware";
 
 export default createStore(
     combineReducers({
-        math,
         user,
         book,
         publisher

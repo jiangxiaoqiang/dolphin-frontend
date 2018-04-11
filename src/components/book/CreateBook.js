@@ -9,7 +9,7 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import { addBookToShelf } from '../../service/bookService';
 import Book from "../search/Book";
-import { findAllPublisher } from "../../service/PublisherService";
+import { findAllPublisher } from "../../service/publisherService";
 
 export default class CreateBook extends React.Component {
 
@@ -18,7 +18,7 @@ export default class CreateBook extends React.Component {
     }
 
     componentWillMount() {
-        findAllPublisher();
+        //findAllPublisher();
     }
 
     handleAdd = () => {
@@ -38,10 +38,12 @@ export default class CreateBook extends React.Component {
         addBookToShelf(book);
     };
 
+    handlePublisherAdd = () => {
+            findAllPublisher();
+    };
+
     render() {
-
         const publishers = this.props.publisher;
-
 
         const style = {
             margin: 12,
@@ -74,6 +76,7 @@ export default class CreateBook extends React.Component {
                     </div>
                     <div>
                         <RaisedButton label="添加" primary={true} style={style} onClick={() => this.handleAdd()} />
+                        <RaisedButton label="获取出版社" primary={true} style={style} onClick={() => this.handlePublisherAdd()} />
                     </div>
                 </div>
             </MuiThemeProvider>

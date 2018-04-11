@@ -6,9 +6,7 @@ const initState = {};
 const publisherReducer = (state = fromJS(initState), action) => {
     switch (action.type) {
         case publisherType.GET_ALL_PUBLISHERS:
-            state = {
-                ...action.data
-            };
+            state.set(publisherType.GET_ALL_PUBLISHERS,action.data);
             break;
         default:
             break;
