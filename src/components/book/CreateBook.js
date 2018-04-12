@@ -15,12 +15,18 @@ import MenuItem from 'material-ui/MenuItem';
 
 export default class CreateBook extends React.Component {
 
+    state = {
+        value: "中华书局",
+        errorText:"",
+    };
+    
+
     constructor(props) {
         super(props);
     }
 
     componentWillMount() {
-        //findAllPublisher();
+        findAllPublisher();
     }
 
     handleAddPublisher = () => {
@@ -29,6 +35,9 @@ export default class CreateBook extends React.Component {
 
     handleAdd = () => {
         const isbn = document.getElementById("isbnInput").value;
+        if(isbn === ""||isbn === undefined){
+            this.setState({ errorText: 'ISBN编号不能为空' })
+        }
         const bookName = document.getElementById("bookName").value;
         const publisher = document.getElementById("publisher").value;
         const author = document.getElementById("author").value;
@@ -44,8 +53,18 @@ export default class CreateBook extends React.Component {
         addBookToShelf(book);
     };
 
+    handleChange = (event, index, value) => this.setState({value});
+
+    onChange(event) {
+        if (event.target.value) {
+          
+        } else {
+          
+        }
+      }
+
     render() {
-        const publishers = this.props.publisher;
+        const publishers = this.props.publisher.size === 0 ? []:this.props.publisher;
 
         var arr = [];
         arr = Object.keys(publishers).map(function (key) {
@@ -71,16 +90,23 @@ export default class CreateBook extends React.Component {
                         iconClassNameRight="muidocs-icon-navigation-expand-more"
                     />
                     <div>
-                        <TextField id="isbnInput" hintText="ISBN"/>
+                        <TextField id="isbnInput" 
+                        hintText="ISBN"
+                        onChange={this.onChange.bind(this)}
+                        errorText= {this.state.errorText}/>
                         <br />
                         <TextField id="bookName" hintText="书名"/>
                         <br />
                         <SelectField
+                            id="publisher"
                             floatingLabelText="出版社"
+                            value={this.state.value}
+                            onChange={this.handleChange}
+                            maxHeight={600}
                         >
-                            {arr.length > 7 && arr && arr !== undefined ? arr.map(function (book, index) {
+                            {arr.length > 7 && arr && arr !== undefined ? arr.map(function (publisher, index) {
                                 return (
-                                    <MenuItem value={index} primaryText={book.name}/>
+                                    <MenuItem id = {index} value={index} primaryText={publisher.name}/>
                                 );
                             }) : null}
                         </SelectField>
@@ -90,9 +116,7 @@ export default class CreateBook extends React.Component {
                         <TextField id="price" hintText="价格"/>
                     </div>
                     <div>
-                        <RaisedButton label="添加" primary={true} style={style} onClick={() => this.handleAdd()}/>
-                        <RaisedButton label="获取出版社" primary={true} style={style}
-                                      onClick={() => this.handleAddPublisher()}/>
+                        <RaisedButton label="添加" primary={true} style={style} onClick={() => this.handleAdd()}/>                        
                     </div>
                 </div>
             </MuiThemeProvider>

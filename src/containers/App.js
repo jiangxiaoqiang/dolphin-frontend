@@ -4,7 +4,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { setName } from "../actions/userActions";
-import {getAllPublishers} from "../actions/publisherAction";
+import { getAllPublishers } from "../actions/publisherAction";
 import { searchBookById, getAllBooks } from "../actions/bookActions";
 import Book from "../components/search/Book";
 import BookShelf from "../components/user/BookShelf";
@@ -14,6 +14,7 @@ import { bindActionCreators } from "redux";
 import * as bookService from "../service/bookService";
 import CreateBook from "../components/book/CreateBook";
 import Index from "../components/main/Index";
+import Login from "../components/user/Login";
 
 class App extends React.Component {
     constructor() {
@@ -24,6 +25,7 @@ class App extends React.Component {
         return (
             <div className="container">
                 <Route path="/index" render={(props) => <Index />} />
+                <Route path="/user/login" render={(props) => <Login />} />
                 <Route path="/user/shelf" render={() => <BookShelf book={this.props.book} />} />
                 <Route path="/book/create" render={() => <CreateBook publisher={this.props.publisher} />} />
             </div>
@@ -51,7 +53,7 @@ const mapDispatchToProps = (dispatch) => {
         getAllBooks: (book) => {
             dispatch(getAllBooks(book));
         },
-        getAllPublishers:(publisher)=>{
+        getAllPublishers: (publisher) => {
             dispatch(getAllPublishers(publisher));
         }
     };
