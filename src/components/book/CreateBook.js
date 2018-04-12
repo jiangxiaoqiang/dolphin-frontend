@@ -2,14 +2,14 @@
  * Created by jiangtingqiang@gmail.com on 18-3-27.
  */
 
-import React, {Component} from "react";
+import React, { Component } from "react";
 import AppBar from 'material-ui/AppBar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-import {addBookToShelf} from '../../service/bookService';
+import { addBookToShelf } from '../../service/bookService';
 import Book from "../search/Book";
-import {findAllPublisher} from "../../service/publisherService";
+import { findAllPublisher } from "../../service/publisherService";
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
@@ -17,9 +17,9 @@ export default class CreateBook extends React.Component {
 
     state = {
         value: "中华书局",
-        errorText:"",
+        errorText: "",
     };
-    
+
 
     constructor(props) {
         super(props);
@@ -29,17 +29,14 @@ export default class CreateBook extends React.Component {
         findAllPublisher();
     }
 
-    handleAddPublisher = () => {
-        findAllPublisher();
-    };
-
     handleAdd = () => {
         const isbn = document.getElementById("isbnInput").value;
-        if(isbn === ""||isbn === undefined){
+        if (isbn === "" || isbn === undefined) {
             this.setState({ errorText: 'ISBN编号不能为空' })
         }
         const bookName = document.getElementById("bookName").value;
-        const publisher = document.getElementById("publisher").value;
+        const publisherComponent = document.getElementById("publisher");
+        const publisher = publisherComponent.innerText;
         const author = document.getElementById("author").value;
         const price = document.getElementById("price").value;
         var book = {
@@ -53,18 +50,18 @@ export default class CreateBook extends React.Component {
         addBookToShelf(book);
     };
 
-    handleChange = (event, index, value) => this.setState({value});
+    handleChange = (event, index, value) => this.setState({ value });
 
     onChange(event) {
         if (event.target.value) {
-          
+
         } else {
-          
+
         }
-      }
+    }
 
     render() {
-        const publishers = this.props.publisher.size === 0 ? []:this.props.publisher;
+        const publishers = this.props.publisher.size === 0 ? [] : this.props.publisher;
 
         var arr = [];
         arr = Object.keys(publishers).map(function (key) {
@@ -90,12 +87,12 @@ export default class CreateBook extends React.Component {
                         iconClassNameRight="muidocs-icon-navigation-expand-more"
                     />
                     <div>
-                        <TextField id="isbnInput" 
-                        hintText="ISBN"
-                        onChange={this.onChange.bind(this)}
-                        errorText= {this.state.errorText}/>
+                        <TextField id="isbnInput"
+                            hintText="ISBN"
+                            onChange={this.onChange.bind(this)}
+                            errorText={this.state.errorText} />
                         <br />
-                        <TextField id="bookName" hintText="书名"/>
+                        <TextField id="bookName" hintText="书名" />
                         <br />
                         <SelectField
                             id="publisher"
@@ -106,17 +103,18 @@ export default class CreateBook extends React.Component {
                         >
                             {arr.length > 7 && arr && arr !== undefined ? arr.map(function (publisher, index) {
                                 return (
-                                    <MenuItem id = {index} value={index} primaryText={publisher.name}/>
+                                    <MenuItem id={index} value={index} primaryText={publisher.name} />
                                 );
                             }) : null}
                         </SelectField>
+                        <RaisedButton label="新增出版社" primary={true} style={style} href="/publisher/create" />
                         <br />
-                        <TextField id="author" hintText="作者"/>
+                        <TextField id="author" hintText="作者" />
                         <br />
-                        <TextField id="price" hintText="价格"/>
+                        <TextField id="price" hintText="价格" />
                     </div>
                     <div>
-                        <RaisedButton label="添加" primary={true} style={style} onClick={() => this.handleAdd()}/>                        
+                        <RaisedButton label="添加" primary={true} style={style} onClick={() => this.handleAdd()} />
                     </div>
                 </div>
             </MuiThemeProvider>

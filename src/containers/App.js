@@ -15,6 +15,7 @@ import * as bookService from "../service/bookService";
 import CreateBook from "../components/book/CreateBook";
 import Index from "../components/main/Index";
 import Login from "../components/user/Login";
+import CreatePublisher from "../components/book/CreatePublisher";
 
 class App extends React.Component {
     constructor() {
@@ -28,6 +29,7 @@ class App extends React.Component {
                 <Route path="/user/login" render={(props) => <Login />} />
                 <Route path="/user/shelf" render={() => <BookShelf book={this.props.book} />} />
                 <Route path="/book/create" render={() => <CreateBook publisher={this.props.publisher} />} />
+                <Route path="/publisher/create" render={(props) => <CreatePublisher />}/>
             </div>
         )
     }

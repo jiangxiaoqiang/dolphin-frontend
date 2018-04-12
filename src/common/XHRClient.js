@@ -21,6 +21,7 @@ export function requestWithAction(config, action) {
         response => {
             console.log("Axios请求服务端返回结果是：", response.data);
             const data = response.data.data;
+            
             store.dispatch(action(data));
         }
     ).catch(

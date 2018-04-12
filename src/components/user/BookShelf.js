@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import AppBar from 'material-ui/AppBar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -10,29 +10,41 @@ import {
     TableRow,
     TableRowColumn,
 } from 'material-ui/Table';
-import {findAllBooks} from '../../service/bookService';
-import {Utils} from "handlebars";
+import { findAllBooks } from '../../service/bookService';
+import { Utils } from "handlebars";
 import DolphinUtils from "../../common/DolphinUtils";
 import store from "../../store";
+import TextField from 'material-ui/TextField';
+import Paper from 'material-ui/Paper';
+import { BottomNavigation, BottomNavigationItem } from 'material-ui/BottomNavigation';
+import FontIcon from 'material-ui/FontIcon';
+import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
+
+const recentsIcon = <FontIcon className="material-icons">restore</FontIcon>;
+const favoritesIcon = <FontIcon className="material-icons">favorite</FontIcon>;
+const nearbyIcon = <IconLocationOn />;
 
 export default class BookShelf extends React.Component {
+
+    state = {
+        selectedIndex: 0,
+    };
+
 
     constructor(props) {
         super(props);
     }
 
     componentWillMount() {
-
-    }
-
-    handleFetch() {
         findAllBooks();
     }
 
+    handleFetch() {
+
+    }
+
     render() {
-        const book1 = this.props.book;
-        let state = store.getState();
-        const books = state.book;
+        const books = this.props.book;
         let arr = [];
         if (books && books.book && books.book.length > 0) {
             for (let i in books.book) {
@@ -58,6 +70,12 @@ export default class BookShelf extends React.Component {
                         iconClassNameRight="muidocs-icon-navigation-expand-more"
                     />
                     <div>
+                        <TextField
+                            hintText="输入书名检索"
+                        />
+                        <RaisedButton label="检索" primary={true} style={style} onClick={() => this.handleFetch()} />
+                    </div>
+                    <div>
                         <Table>
                             <TableHeader>
                                 <TableRow>
@@ -70,7 +88,7 @@ export default class BookShelf extends React.Component {
                             <TableBody>
                                 {arr.length > 0 && arr && arr !== undefined ? arr.map(function (book, index) {
                                     return (
-                                        <TableRow>
+                                        <TableRow key={index}>
                                             <TableRowColumn>{index + 1}</TableRowColumn>
                                             <TableRowColumn>{book.name}</TableRowColumn>
                                             <TableRowColumn>{book.author}</TableRowColumn>
@@ -80,9 +98,14 @@ export default class BookShelf extends React.Component {
                             </TableBody>
                         </Table>
                     </div>
-                    <div>
-                        <RaisedButton label="查看" primary={true} style={style} onClick={() => this.handleFetch()}/>
-                    </div>
+                    <Paper zDepth={1}>
+                        <BottomNavigation selectedIndex={this.state.selectedIndex}>                           
+                            <BottomNavigationItem
+                                label="主页"
+                                icon={nearbyIcon}                                
+                            />
+                        </BottomNavigation>
+                    </Paper>
                 </div>
             </MuiThemeProvider>
         )
