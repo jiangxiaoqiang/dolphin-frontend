@@ -2,13 +2,12 @@
  * Created by jiangtingqiang@gmail.com on 18-3-27.
  */
 
-import React, { Component } from "react";
+import React from "react";
 import AppBar from 'material-ui/AppBar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import { addBookToShelf } from '../../service/bookService';
-import Book from "../search/Book";
 import { findAllPublisher } from "../../service/publisherService";
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
@@ -110,6 +109,7 @@ export default class CreateBook extends React.Component {
                         <RaisedButton label="新增出版社" primary={true} style={style} href="/publisher/create" />
                         <br />
                         <TextField id="author" hintText="作者" />
+                        <RaisedButton label="新增作者" primary={true} style={style} href="/author/create" />
                         <br />
                         <TextField id="price" hintText="价格" />
                     </div>

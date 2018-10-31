@@ -6,22 +6,16 @@ import { connect } from 'react-redux';
 import { setName } from "../actions/userActions";
 import { getAllPublishers } from "../actions/publisherAction";
 import { searchBookById, getAllBooks } from "../actions/bookActions";
-import Book from "../components/search/Book";
 import BookShelf from "../components/user/BookShelf";
-import { BrowserRouter, Route } from 'react-router-dom'
-import { bookType } from "../type/BookType";
-import { bindActionCreators } from "redux";
-import * as bookService from "../service/bookService";
+import {  Route } from 'react-router-dom'
 import CreateBook from "../components/book/CreateBook";
 import Index from "../components/main/Index";
 import Login from "../components/user/Login";
 import CreatePublisher from "../components/book/CreatePublisher";
+import CreateAuthor from "../components/author/CreateAuthor";
 
 class App extends React.Component {
-    constructor() {
-        super();
-    }
-
+   
     render() {
         return (
             <div className="container">
@@ -30,6 +24,7 @@ class App extends React.Component {
                 <Route path="/user/shelf" render={() => <BookShelf book={this.props.book} />} />
                 <Route path="/book/create" render={() => <CreateBook publisher={this.props.publisher} />} />
                 <Route path="/publisher/create" render={(props) => <CreatePublisher />}/>
+                <Route path="/author/create" render={(props) => <CreateAuthor />}/>
             </div>
         )
     }
