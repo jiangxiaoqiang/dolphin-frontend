@@ -1,6 +1,9 @@
 /**
  * Created by dolphin on 15/7/2017.
  */
+
+import {bookType} from "../type/BookType";
+
 export function searchBook(isbn) {
     return {
         type: "SEARCH_BOOK_BY_ISBN",
@@ -15,17 +18,36 @@ export function findBooksByName(books) {
     };
 }
 
+export function getAllBooks(data) {
+    return {
+        type: bookType.GET_ALL_BOOKS,
+        book: {
+            book: data
+        }
+    };
+}
+
 export function searchBookById(book) {
     return {
         type: "SEARCH_BOOK_BY_ID",
         book: book
     };
-    /*return dispatch => {
-     setTimeout(() => {
-     dispatch({
-     type: "SEARCH_BOOK_BY_ID",
-     name: name
-     });
-     }, 2000);
-     };*/
 }
+
+export function createBookToShelf(book) {
+    return {
+        type: "CREATE_BOOK_TO_SHELF",
+        book: book
+    };
+}
+
+export function createPublisher(publisher) {
+    return {
+        type: "CREATE_PUBLISHER",
+        publisher: publisher
+    };
+}
+
+
+
+

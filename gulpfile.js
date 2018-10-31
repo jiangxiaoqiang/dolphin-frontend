@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 var webpack = require('gulp-webpack');
-var webpackConfig = require('./webpack/dev.config.js');
+var webpackConfig = require('./webpack/dev.config.js-bak');
 var imagemin = require('gulp-imagemin');
 var notify = require('gulp-notify');
 

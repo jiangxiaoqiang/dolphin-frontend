@@ -2,22 +2,29 @@
  * Created by dolphin on 30/6/2017.
  */
 import React from 'react';
-import {connect} from 'react-redux';
-import {Main} from '../components/user/Main';
-import {User} from '../components/user/User';
-import {setName} from "../actions/userActions"
-import {searchBookById} from "../actions/bookActions";
-import Book from "../components/search/Book";
+import { connect } from 'react-redux';
+import { setName } from "../actions/userActions";
+import { getAllPublishers } from "../actions/publisherAction";
+import { searchBookById, getAllBooks } from "../actions/bookActions";
+import BookShelf from "../components/user/BookShelf";
+import {  Route } from 'react-router-dom'
+import CreateBook from "../components/book/CreateBook";
+import Index from "../components/main/Index";
+import Login from "../components/user/Login";
+import CreatePublisher from "../components/book/CreatePublisher";
+import CreateAuthor from "../components/author/CreateAuthor";
 
 class App extends React.Component {
-    constructor() {
-        super();
-    }
-
+   
     render() {
         return (
             <div className="container">
-                <Book books={this.props.book} searchBook={() => this.props.searchBookById("sssss") } book={this.props.book}/>
+                <Route path="/index" render={(props) => <Index />} />
+                <Route path="/user/login" render={(props) => <Login />} />
+                <Route path="/user/shelf" render={() => <BookShelf book={this.props.book} />} />
+                <Route path="/book/create" render={() => <CreateBook publisher={this.props.publisher} />} />
+                <Route path="/publisher/create" render={(props) => <CreatePublisher />}/>
+                <Route path="/author/create" render={(props) => <CreateAuthor />}/>
             </div>
         )
     }
@@ -27,7 +34,8 @@ const mapStateToProps = (state) => {
     return {
         user: state.user,
         math: state.math,
-        book: state.book
+        book: state.book,
+        publisher: state.publisher
     };
 };
 
@@ -38,6 +46,12 @@ const mapDispatchToProps = (dispatch) => {
         },
         searchBookById: (name) => {
             dispatch(searchBookById(name));
+        },
+        getAllBooks: (book) => {
+            dispatch(getAllBooks(book));
+        },
+        getAllPublishers: (publisher) => {
+            dispatch(getAllPublishers(publisher));
         }
     };
 };

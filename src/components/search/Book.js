@@ -3,18 +3,14 @@
  */
 
 import React from 'react';
-import {findBookById} from "../../service/bookService";
 import {getBooksByName} from "../../service/bookService";
 import AppBar from 'material-ui/AppBar';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
 import {GridList, GridTile} from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
-import Subheader from 'material-ui/Subheader';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
-import {User} from '../../components/user/User';
-import Utils from "../../common/Utils";
+
 
 export default class Book extends React.Component {
     constructor(props) {
@@ -25,7 +21,6 @@ export default class Book extends React.Component {
     }
 
     getBookInfo() {
-        //findBookById();
         const userInput = document.getElementById("userInput");
         if (userInput.value.length > 0) {
             getBooksByName(userInput.value);
@@ -51,7 +46,7 @@ export default class Book extends React.Component {
         };
         const books = this.props.books;
         let arr = [];
-        for(let i in books){
+        for (let i in books) {
             arr.push(books[i]);
         }
         const tilesData = arr;
@@ -76,20 +71,19 @@ export default class Book extends React.Component {
                             cellHeight={180}
                             style={styles.gridList}
                         >
-                            {tilesData.map((tile) => (
-                                <GridTile
-                                    key={tile.id}
-                                    title={tile.name}
-                                    subtitle={<span>by <b>{tile.author}</b></span>}
-                                    actionIcon={<IconButton><StarBorder color="white"/></IconButton>}
-                                >
-                                    <img src={tile.img}/>
-                                </GridTile>
-                            ))}
+                            {tilesData.map(function (tile, index) {
+                                return (
+                                    <GridTile
+                                        key={index}
+                                        title={tile.name}
+                                        subtitle={<span>by <b>{tile.author}</b></span>}
+                                        actionIcon={<IconButton><StarBorder color="white"/></IconButton>}
+                                    >
+                                        <img src={tile.img}/>
+                                    </GridTile>);
+                            })}
                         </GridList>
                     </div>
-
-
                 </div>
             </MuiThemeProvider>
         )

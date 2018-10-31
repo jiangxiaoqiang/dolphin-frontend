@@ -1,22 +1,58 @@
 /**
- * Created by yangbajing(yangbajing@gmail.com) on 2017-06-28.
+ * Created by jiangtingqiang(jiangtingqiang@gmail.com) on 2017-06-28.
  */
 
-import {request,requestWithAction} from '../common/XHRClient';
-
-import {findBooksByName} from "../actions/bookActions";
+import { request, requestWithAction } from '../common/XHRClient';
+import { } from '../reducers/bookReducer';
+import { findBooksByName, createBookToShelf, createPublisher, getAllBooks } from "../actions/bookActions";
+import globalConfig from "../global.config.json";
 
 export function findBookById() {
-    const config = {method: 'get', url: 'http://localhost:8011/api/book/111'};
+    const config = {
+        method: 'get',
+        url: 'http://localhost:8011/api/book/111'
+    };
     return request(config);
 }
 
 export function getBooksByName(name) {
     const config = {
         method: 'get',
+<<<<<<< HEAD
         url: 'http://192.168.31.93:8011/api/book?name=' + name
     }
     return requestWithAction(config,findBooksByName);
 };
+=======
+        url: '/dolphin/api/book?name=' + name
+    };
+    return requestWithAction(config, findBooksByName);
+}
+>>>>>>> 8be9c725dfb0842087c5d97ccfd8264433a5c0ff
+
+export function findAllBooks() {
+    const config = {
+        method: 'get',
+        url: globalConfig.apiServerUrl + '/dolphin/api/book/all/1'
+    };
+    return requestWithAction(config, getAllBooks);
+}
+
+export function addBookToShelf(book) {
+    const config = {
+        method: 'post',
+        url: globalConfig.apiServerUrl + '/dolphin/api/user/shelf/add',
+        data: book
+    };
+    return requestWithAction(config, createBookToShelf)
+}
 
 
+export function addPublisher(publisher) {
+    const config = {
+        method: 'post',
+        url: globalConfig.apiServerUrl + '/dolphin/api/dic/publisher',
+        data: publisher
+    };
+    return requestWithAction(config, createPublisher)
+}
