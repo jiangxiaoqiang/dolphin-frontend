@@ -18,17 +18,10 @@ export function findBookById() {
 export function getBooksByName(name) {
     const config = {
         method: 'get',
-<<<<<<< HEAD
-        url: 'http://192.168.31.93:8011/api/book?name=' + name
-    }
-    return requestWithAction(config,findBooksByName);
-};
-=======
         url: '/dolphin/api/book?name=' + name
     };
     return requestWithAction(config, findBooksByName);
 }
->>>>>>> 8be9c725dfb0842087c5d97ccfd8264433a5c0ff
 
 export function findAllBooks() {
     const config = {

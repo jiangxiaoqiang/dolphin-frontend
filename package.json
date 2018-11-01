@@ -69,18 +69,12 @@
     "whatwg-fetch": "2.0.3"
   },
   "scripts": {
-<<<<<<< HEAD
     "dev": "webpack --display-chunks --watch --progress --colors --display-error-details --config webpack/dev.config.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "webpack-build":"webpack --verbose --display-error-details --config webpack/dev.config.js && ./node_modules/gulp/bin/gulp.js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-=======
-    "dev": "webpack --display-chunks --watch --progress --colors --display-error-details --config config/webpack.config.dev.js",
-    "start": "node scripts/start.js",
-    "build": "webpack --progress --profile --colors --config config/webpack.config.prod.js",
-    "test": "node scripts/test.js --env=jsdom"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -114,6 +108,5 @@
   },
   "eslintConfig": {
     "extends": "react-app"
->>>>>>> 8be9c725dfb0842087c5d97ccfd8264433a5c0ff
   }
 }
